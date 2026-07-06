@@ -47,9 +47,9 @@ responses onto the existing shapes, so the copied SIPMO components render unchan
   `?featured=true` (that's how the home's Featured/Deals row is built).
 - **Product images live in WordPress media** (cPanel). No Cloudinary needed here.
 - The Woo site still has **WooCommerce sample/demo data** (categories Bags, Music, Posters,
-  Shoes…). `fetchCategories` only returns categories with `count > 0`, but demo cats will show
-  until deleted in WP admin. Optional `NEXT_PUBLIC_HOME_CATEGORY_SLUGS` env can whitelist (not
-  wired yet).
+  Shoes…). `fetchCategories` only returns categories with `count > 0`. To hide the demo ones
+  immediately, set **`NEXT_PUBLIC_HOME_CATEGORY_SLUGS`** (comma-separated top-level slugs, shown
+  in that order) — it's wired into `fetchCategories`. Blank = show all. Set the same var on Vercel.
 
 ## Env vars
 `.env.local` (and Vercel → Settings → Environment Variables):

@@ -10,6 +10,14 @@ const WP_URL = (process.env.NEXT_PUBLIC_WP_URL ?? "https://sipmo.lk").replace(/\
 const BASE = process.env.WOO_BASE_URL ?? `${WP_URL}/wp-json/wc/store/v1`;
 const REVALIDATE = 300; // ISR: refresh catalog every 5 min (kind to cPanel, free on Vercel).
 
+// Optional whitelist: only these top-level category slugs are shown (in this order).
+// Blank = show every WooCommerce category that has products. Use it to hide leftover
+// WooCommerce demo categories (Bags, Music, Posters…) before they're deleted in WP.
+const HOME_CATEGORY_SLUGS = (process.env.NEXT_PUBLIC_HOME_CATEGORY_SLUGS ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 // ---- Public types (identical contract to the original NestJS storefront) ----
 
 export type CategorySummary = {
@@ -255,8 +263,16 @@ export async function fetchCategories(): Promise<CategoryNode[]> {
   const cats = await loadCategoriesRaw();
   // Only surface categories that actually have products, sorted by size then name.
   const withProducts = cats.filter((c) => c.count > 0);
-  return buildTree(withProducts).sort(
+  const roots = buildTree(withProducts).sort(
     (a, b) => b.productCount - a.productCount || a.name.localeCompare(b.name)
+  );
+
+  if (HOME_CATEGORY_SLUGS.length === 0) {
+    return roots;
+  }
+  // Keep only whitelisted categories, in the order they were listed.
+  return HOME_CATEGORY_SLUGS.map((slug) => roots.find((r) => r.slug === slug)).filter(
+    (node): node is CategoryNode => node !== undefined
   );
 }
 
