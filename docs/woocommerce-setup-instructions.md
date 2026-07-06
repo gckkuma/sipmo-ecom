@@ -6,6 +6,16 @@ organises the real tea products so the headless storefront (Vercel) looks right.
 
 ---
 
+## CURRENT STATE (2026-06-14) — start here
+The demo data is already deleted. Live WooCommerce now has **15 products (all "ANEW Ceylon Tea")**
+and only the **Uncategorized** category. Three things remain:
+1. **Delete 3 duplicate products** (see Task 2b) — there should be **12 unique**, not 15.
+2. **Create the "Tea & Spices" category** and **assign all 12 products** to it (Task 3 + Task 4).
+   The storefront is set to only show the `tea-and-spices` category, so this is required for the
+   home category circle to appear.
+3. **Add a product image** to each product (Task 4, step 4).
+Tasks 1 (settings) and the demo-deletion parts are already done — you can skip those.
+
 ## Context for the agent
 `sipmo.lk` runs **WordPress + WooCommerce**. A separate Next.js storefront reads WooCommerce's
 public **Store API** and shows the products. Right now WooCommerce still contains **default
@@ -33,6 +43,16 @@ WooCommerce pages (Cart/Checkout/My Account), or change themes.
 3. In **Bulk actions**, choose **Move to Trash**, then **Apply**.
 4. Open **Products → All Products → Trash** and **Empty trash** (Delete permanently).
 5. **Do NOT delete** any product starting with "ANEW Ceylon Tea".
+
+## Task 2b — Delete DUPLICATE tea products
+There are 15 products but only 12 are unique. In **Products → All Products**, sort by Name and
+find the pairs with identical names. **Delete exactly one copy** of each of these three:
+- **ANEW Ceylon Tea – BOPF 100 TB Black Tea 200g** (keep one, trash the other)
+- **ANEW Ceylon Tea – Green Tea Premium Fanning's 25 TB** (keep one, trash the other)
+- **ANEW Ceylon Tea – Green Tea Fanning's 100 TB** (keep one, trash the other)
+Then **empty Trash**. Result: **12** ANEW products remain.
+(Note: "BOPF 100 TB Black Tea 200g" and "BOPF 100 TB **Premium** Black Tea 200g" are DIFFERENT
+products — keep both of those.)
 
 ## Task 3 — Delete the demo CATEGORIES
 1. Go to **Products → Categories**.
