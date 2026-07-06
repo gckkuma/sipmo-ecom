@@ -86,3 +86,22 @@
 /* Store/page notices in brand colours */
 .woocommerce-message, .woocommerce-info { border-top-color: #05B57D !important; }
 .woocommerce-error { border-top-color: #E30C5A !important; }
+
+/* ---------- CLEANUP — hide Storefront "noise" ---------- */
+/* Breadcrumb ("Home > Cart") */
+.woocommerce-breadcrumb { display: none !important; }
+/* Header search box */
+.site-search { display: none !important; }
+/* Mobile bottom bar Storefront adds */
+.storefront-handheld-footer-bar { display: none !important; }
+/* Empty cross-sells / "you may also like" block under the cart */
+.cart-collaterals .cross-sells,
+.woocommerce-cart .cart-collaterals .cross-sells { display: none !important; }
+/* Make the cart-totals card sit neatly on the right, no huge empty column */
+.woocommerce-cart .cart-collaterals .cart_totals {
+  float: right; width: 100%; max-width: 460px;
+}
+/* Tidy footer credit / stray characters */
+.site-footer .site-info { text-align: left; padding-top: 1rem; }
+/* Trim the big empty gaps */
+.site-content, .content-area { padding-top: 1.5rem; }
