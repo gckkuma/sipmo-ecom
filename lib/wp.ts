@@ -5,9 +5,9 @@ export function wpUrl(): string {
   return WP_URL;
 }
 
-/** Adds a product to the WooCommerce cart and lands the customer on the Woo cart. */
+/** Adds a product to the WooCommerce cart and lands the customer on the Woo cart page. */
 export function addToCartUrl(productId: string | number, quantity = 1): string {
-  return `${WP_URL}/?add-to-cart=${productId}&quantity=${quantity}`;
+  return `${WP_URL}/cart/?add-to-cart=${productId}&quantity=${quantity}`;
 }
 
 export function cartUrl(): string {
